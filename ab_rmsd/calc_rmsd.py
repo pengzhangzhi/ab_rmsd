@@ -124,7 +124,8 @@ def parse_pdb(pred_path):
     model, heavy_chains, light_chains, other_chains = renumber(pred_path)
     if len(heavy_chains) == 0: raise PDBParseError("No heavy chain found in pdb file.")
     h_id = heavy_chains[0]
-    if len(light_chains) == 0: l_id = None
+    l_id = light_chains[0] if len(light_chains) != 0 else None
+    
     ab_dict = preprocess_antibody_structure(
         model, h_id, l_id
     )
