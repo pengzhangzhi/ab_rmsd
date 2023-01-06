@@ -4,3 +4,6 @@ def exists(x):
 
 def exist_key(d, k):
     return d.get(k) is not None
+
+class PDBParseError(Exception):
+    pass

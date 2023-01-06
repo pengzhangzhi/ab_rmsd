@@ -1,8 +1,9 @@
 from ab_rmsd.ab_number import renumber
 from ab_rmsd.read_pdb import preprocess_antibody_structure
-from ab_rmsd.utils.utility import exists, exist_key
-from superimpose import KabschRMSD
+from ab_rmsd.utils.utility import exists, exist_key,PDBParseError
+from .superimpose import KabschRMSD
 import torch
+
 
 
 class AntibodyRMSD:
@@ -18,8 +19,8 @@ class AntibodyRMSD:
         if superimpose_pred is True, the predicted coordinates will be superimposed to the native coordinates.
 
         Args:
-            pred_antibody (dict): _description_
-            native_antibody (dict): _description_
+            pred_antibody (dict): 
+            native_antibody (dict): 
             superimpose_pred (bool, optional): superimpose the predicted coordinates. Defaults to True.
 
         Returns:
@@ -39,10 +40,12 @@ class AntibodyRMSD:
             chain_list.append("light")
 
         for chain in chain_list:
-            pred_coord = pred_antibody[chain]["pos_heavyatom"][..., : self.nb_atoms, :]
             native_coord = native_antibody[chain]["pos_heavyatom"][
                 ..., : self.nb_atoms, :
             ]
+            native_len = native_coord.shape[0]
+            pred_coord = pred_antibody[chain]["pos_heavyatom"][..., : self.nb_atoms, :][:native_len]
+            
 
             pred_coord_list.append(pred_coord)
             native_coord_list.append(native_coord)
@@ -73,7 +76,7 @@ class AntibodyRMSD:
             )
             superimposed_pred_coord = superimposed_pred_coord.reshape(*shape)
             chain_res = self._calc_region_rmsd(
-                pred_antibody[chain]["select"], superimposed_pred_coord, native_coord
+                native_antibody[chain]["select"], superimposed_pred_coord, native_coord
             )
             res_list.append(chain_res)
 
@@ -107,7 +110,7 @@ def calc_ab_rmsd(pred_path, native_path):
 def parse_pdb(pred_path):
     """
     parse a pdb file to protein dict.
-    the pdb file should contain at least the heavy chain.
+    the pdb file must contain at least the heavy chain.
     
     Args:
         pred_path (str): 
@@ -119,8 +122,7 @@ def parse_pdb(pred_path):
         dict: dict of heavy and light chain info.
     """
     model, heavy_chains, light_chains, other_chains = renumber(pred_path)
-    if len(heavy_chains) == 0:
-        raise ValueError("No heavy chain found in pdb file.")
+    if len(heavy_chains) == 0: raise PDBParseError("No heavy chain found in pdb file.")
     h_id = heavy_chains[0]
     if len(light_chains) == 0: l_id = None
     ab_dict = preprocess_antibody_structure(
