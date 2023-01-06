@@ -20,9 +20,9 @@ First, install abnumber using conda.
 ```bash
 conda install -c bioconda abnumber
 ```
-Then, install ab_rmsd using pip.
+Then, install ab_rmsd from github.
 ```bash
-pip install ab_rmsd
+pip install git+https://github.com/pengzhangzhi/ab_rmsd.git
 ```
 
 
@@ -32,7 +32,7 @@ Calculate the RMSD between predicted and native nanobody structure.
 ```python
 from ab_rmsd import calc_ab_rmsd
 
-# two example pdb files are provided in the example folder.
+# two example pdb files are provided in the `exampl`e folder.
 native = "example/7d6y_1_B.pdb"
 pred = "example/pred_7d6y_1_B.pdb"
 rmsd = calc_ab_rmsd(native,pred)
