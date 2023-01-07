@@ -49,8 +49,9 @@ output:
 ``` 
 
 # TODOs
-- add `DockQ` as an evaluation for heavy and light chain complex structure.
+- ~~add `DockQ` as an evaluation for heavy and light chain complex structure.~~
 
 # Credits
 
-Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
+- Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
+- Code regarding the calculation of DockQ is from https://github.com/bjornwallner/DockQ.
