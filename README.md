@@ -44,7 +44,7 @@ output:
 ``` 
 
 # TODOs
-- add `DockQ` as an evaluation of heavy and light chain orientations.
+- add `DockQ` as an evaluation for heavy and light chain complex structure.
 
 # Credits
 
