@@ -26,6 +26,14 @@ Then, install ab_rmsd from github.
 pip install git+https://github.com/pengzhangzhi/ab_rmsd.git
 ```
 
+#### [Optional] DockQ
+If you want to calculate the DockQ between complex structures, run the following command.
+```bash
+cd DockQ
+make
+```
+
+
 ## Usage <a name = "usage"></a>
 
 Calculate the RMSD between predicted and native nanobody structure.
@@ -68,6 +76,10 @@ fv-H    0.6426
 >>> End
 ```
 
+# TODOs
+- ~~add `DockQ` as an evaluation for heavy and light chain complex structure.~~
+
 # Credits
 
-Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
+- Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
+- Code regarding the calculation of DockQ is from https://github.com/bjornwallner/DockQ.
