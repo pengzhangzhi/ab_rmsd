@@ -3,7 +3,6 @@
 import Bio.PDB
 import warnings
 from Bio import BiopythonWarning
-
 warnings.simplefilter("ignore", BiopythonWarning)
 import sys
 import os
@@ -15,7 +14,7 @@ from math import sqrt
 from argparse import ArgumentParser
 import itertools
 import subprocess
-from typing import List, 
+from typing import List
 
 def parse_fnat(fnat_out):
     fnat = -1
