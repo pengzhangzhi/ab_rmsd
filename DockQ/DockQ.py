@@ -15,7 +15,7 @@ from math import sqrt
 from argparse import ArgumentParser
 import itertools
 import subprocess
-
+from typing import List, 
 
 def parse_fnat(fnat_out):
     fnat = -1
@@ -509,7 +509,7 @@ def make_two_chain_pdb_perm(pdb, group1, group2):  # not yet ready
 def main():
 
     args = parse_args()
-    run(**args.__dict__)
+    calc_dockQ(**args.__dict__)
 
 
 def parse_args():
@@ -598,9 +598,9 @@ def parse_args():
     return args
 
 
-def run(
-    model,
-    native,
+def calc_dockQ(
+    model:List[str],
+    native:List[str],
     capri_peptide=False,
     short=False,
     verbose=False,
@@ -617,6 +617,13 @@ def run(
     *args,
     **kwargs
 ):
+    """
+    Args:
+        model: list of path to model file.
+        native: list of path to native file.
+    Returns:
+        dict of DockQ, Fnat, LRMS, and iRMS Score.
+    """
     # bio_ver=1.64
     bio_ver = 1.61
     if float(Bio.__version__) < bio_ver:
@@ -956,7 +963,12 @@ def run(
         if capri_peptide:
             peptide_disclaimer = "DockQ not reoptimized for CAPRI peptide evaluation"
         print(("DockQ {:.3f} {}".format(DockQ, peptide_disclaimer)))
-
+        return {
+            "DockQ": DockQ,
+            "Fnat": fnat,
+            "iRMS": irms,
+            "LRMS": Lrms,
+        }
     for f in files_to_clean:
         os.remove(f)
 
