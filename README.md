@@ -45,6 +45,8 @@ output:
 """
 ```
 
+In the terminal:
+
 ```shell
 abrmsd --pred pred_7d6y_1_B.pdb --native 7d6y_1_B.pdb --verbose
 
@@ -65,6 +67,7 @@ CDRH3   4.3704
 fv-H    0.6426
 >>> End
 ```
+
 # Credits
 
 Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
