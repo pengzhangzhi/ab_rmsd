@@ -1,6 +1,6 @@
 from ab_rmsd.ab_number import renumber
 from ab_rmsd.read_pdb import preprocess_antibody_structure
-from ab_rmsd.utils.utility import exists, exist_key,PDBParseError
+from ab_rmsd.utils.utility import MergeChains, exists, exist_key,PDBParseError, save_pdb
 from .superimpose import KabschRMSD
 import torch
 
@@ -13,7 +13,7 @@ class AntibodyRMSD:
         self.nb_atoms = 3  # num of atoms selected for superimpose
         self.kabsch_rmsd = KabschRMSD()
 
-    def __call__(self, pred_antibody, native_antibody, superimpose_pred=True):
+    def __call__(self, pred_antibody, native_antibody, superimpose_pred=False):
         """
         calculate the rmsd between two antibodys.
         if superimpose_pred is True, the predicted coordinates will be superimposed to the native coordinates.
@@ -66,7 +66,7 @@ class AntibodyRMSD:
                     rot, trans, coord.reshape(-1, 3)
                 )
                 pred_antibody[chain]["pos_heavyatom"] = superimposed.reshape(*shape)
-
+            
         res_list = []
         for i, chain in enumerate(chain_list):
             pred_coord, native_coord = pred_coord_list[i], native_coord_list[i]
@@ -122,7 +122,7 @@ def parse_pdb(pred_path):
         dict: dict of heavy and light chain info.
     """
     model, heavy_chains, light_chains, other_chains = renumber(pred_path)
-    if len(heavy_chains) == 0: raise PDBParseError("No heavy chain found in pdb file.")
+    if len(heavy_chains) == 0: raise PDBParseError("No heavy chain found in pdb file, path: {}".format(pred_path))
     h_id = heavy_chains[0]
     l_id = light_chains[0] if len(light_chains) != 0 else None
     

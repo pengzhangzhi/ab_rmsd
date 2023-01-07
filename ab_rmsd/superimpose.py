@@ -17,21 +17,21 @@ class KabschRMSD:
         rmsd = torch.sqrt(torch.mean(torch.sum(((coords_pred - coords) ** 2), dim=-1)))
         return rmsd
 
-    def __call__(self, coords_pred: Tensor, coords: Tensor) -> Tensor:
+    def __call__(self, coords_pred: Tensor, coords: Tensor, superimpose=False) -> Tensor:
         """
         Calculate the KabschRMSD between two coordinates.
 
         Args:
-            coords_pred: (...,3)
-            coords: (...,3)
+            coords_pred: (N, 3)
+            coords: (N, 3)
         Returns:
             rmsd: (1)
         """
 
-        # superimpose
-        rot, tran = self.calc_superimpose_transformation(coords, coords_pred)
-        coords_pred = self.apply_transformation(rot, tran, coords_pred)
-        # calculate rmsd
+        if superimpose:
+            rot, tran = self.calc_superimpose_transformation(coords, coords_pred)
+            coords_pred = self.apply_transformation(rot, tran, coords_pred)
+        
         return self.rmsd(coords, coords_pred)
 
     @torch.no_grad()
