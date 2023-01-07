@@ -23,7 +23,12 @@ Then, install ab_rmsd from github.
 ```bash
 pip install git+https://github.com/pengzhangzhi/ab_rmsd.git
 ```
-
+#### [Optional] DockQ
+If you want to calculate the DockQ between complex structures, run the following command.
+```bash
+cd DockQ
+make
+```
 
 ## Usage <a name = "usage"></a>
 
