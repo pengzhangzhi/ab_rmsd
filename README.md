@@ -45,6 +45,26 @@ output:
 """
 ```
 
+```shell
+abrmsd --pred pred_7d6y_1_B.pdb --native 7d6y_1_B.pdb --verbose
+
+# Output:
+[INFO] Renumbered chain B (H)
+[INFO] Renumbered chain A (H)
+    _    _       ____  __  __ ____  ____  
+   / \  | |__   |  _ \|  \/  / ___||  _ \ 
+  / _ \ | '_ \  | |_) | |\/| \___ \| | | |
+ / ___ \| |_) | |  _ <| |  | |___) | |_| |
+/_/   \_\_.__/  |_| \_\_|  |_|____/|____/ 
+
+>>> Result
+Frag    RMSD(Å)
+CDRH1   0.3136
+CDRH2   0.0898
+CDRH3   4.3704
+fv-H    0.6426
+>>> End
+```
 # Credits
 
 Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
