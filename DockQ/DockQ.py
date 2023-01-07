@@ -962,15 +962,15 @@ def calc_dockQ(
         if capri_peptide:
             peptide_disclaimer = "DockQ not reoptimized for CAPRI peptide evaluation"
         print(("DockQ {:.3f} {}".format(DockQ, peptide_disclaimer)))
-        return {
+        
+    for f in files_to_clean:
+        os.remove(f)
+    return {
             "DockQ": DockQ,
             "Fnat": fnat,
             "iRMS": irms,
             "LRMS": Lrms,
         }
-    for f in files_to_clean:
-        os.remove(f)
-
 
 if __name__ == "__main__":
     main()

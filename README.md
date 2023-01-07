@@ -48,6 +48,55 @@ output:
 """
 ``` 
 
+Calculate the RMSD between paired antibody structures (containing heavy and light chains).
+```python
+from ab_rmsd import calc_ab_rmsd
+
+# two example pdb files are provided in the `exampl`e folder.
+native = "example/7s0b_.pdb"
+pred = "example/pred_7s0b_.pdb"
+rmsd = calc_ab_rmsd(native,pred)
+print(rmsd)
+
+"""
+output:
+{
+    'CDRH1': tensor(25.6173), 'CDRH2': tensor(15.5819), 'CDRH3': tensor(25.7562), 'fv-H': tensor(15.9964), 
+    'CDRL1': tensor(11.8419), 'CDRL2': tensor(13.8057), 'CDRL3': tensor(17.1446), 'fv-L': tensor(15.9478)
+}
+"""
+``` 
+
+
+
+
+
+Calculate the DockQ scores between predicted and native complex structure.
+```python
+from DockQ.DockQ import calc_DockQ
+
+scores = calc_DockQ(model='example/pred_7s0b_.pdb',native='example/7s0b_.pdb')
+print(scores)
+"""
+The first four scores are usually used to evaluate the docking performance.
+{
+    'DockQ': 0.011549873197136384, 
+    'irms': 17.429353912635577,
+    'Lrms': 50.73969606449461, 
+    'fnat': 0.0, 'nat_correct': 0, 
+    'nat_total': 55, 'fnonnat': 1.0, 
+    'nonnat_count': 9, 'model_total': 9, 
+    'chain1': 'A', 'chain2': 'B', 'len1': 121, 
+    'len2': 107, 'class1': 'receptor', 'class2': 'ligand'
+}
+"""
+```
+
+Use the cli to calculate the DockQ score.
+```bash
+./DockQ/DockQ.py example/pred_7s0b_.pdb example/7s0b_.pdb
+```
+
 # TODOs
 - ~~add `DockQ` as an evaluation for heavy and light chain complex structure.~~
 
