@@ -43,8 +43,7 @@ class AntibodyRMSD:
             native_coord = native_antibody[chain]["pos_heavyatom"][
                 ..., : self.nb_atoms, :
             ]
-            native_len = native_coord.shape[0]
-            pred_coord = pred_antibody[chain]["pos_heavyatom"][..., : self.nb_atoms, :][:native_len]
+            pred_coord = pred_antibody[chain]["pos_heavyatom"][..., : self.nb_atoms, :]
             
 
             pred_coord_list.append(pred_coord)
