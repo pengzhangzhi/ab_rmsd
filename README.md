@@ -127,8 +127,10 @@ Use the cli to calculate the DockQ score.
 
 # TODOs
 - ~~add `DockQ` as an evaluation for heavy and light chain complex structure.~~
-
+- for multi-chain antibody, superimpose each chain seperately and calculate the RMSD. instead of superimposing the complex structure.
+- Read all residues in a pdb file including the missing residues. a boolean tensor indicate if a residue is valid 
 # Credits
 
 - Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
 - Code regarding the calculation of DockQ is from https://github.com/bjornwallner/DockQ.
+- Huge thanks to [@JinyuanSun](https://github.com/JinyuanSun) for contributing the cli tool.
