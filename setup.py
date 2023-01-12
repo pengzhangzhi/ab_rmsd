@@ -16,7 +16,7 @@ setup(
     'antibody'
   ],
   install_requires=[
-    "torch",
+    "torch>=1.7",
     "easydict",
     "biopython",
   ],
@@ -27,4 +27,5 @@ setup(
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3.6',
   ],
+  scripts=['abrmsd'],
 )

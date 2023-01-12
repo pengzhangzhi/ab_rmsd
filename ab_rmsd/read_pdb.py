@@ -1,10 +1,8 @@
 import logging
-from Bio import PDB
-from Bio.PDB import PDBExceptions
+from Bio.PDB import PDBExceptions, Model
 from ab_rmsd.utils.label_chain import _label_heavy_chain_cdr, _label_light_chain_cdr
 from ab_rmsd.utils.protein import parsers
 from ab_rmsd.utils.protein.constants import CDR, CDRID2CDR, NONCDRID
-from Bio.PDB import Model
 
 
 def preprocess_antibody_structure(model:Model, H_id, L_id, id=None):
