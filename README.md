@@ -111,8 +111,8 @@ The first four scores are usually used to evaluate the docking performance.
     'DockQ': 0.011549873197136384, 
     'irms': 17.429353912635577,
     'Lrms': 50.73969606449461, 
-    'fnat': 0.0, 'nat_correct': 0, 
-    'nat_total': 55, 'fnonnat': 1.0, 
+    'fnat': 0.0,
+    'nat_correct': 0, 'nat_total': 55, 'fnonnat': 1.0, 
     'nonnat_count': 9, 'model_total': 9, 
     'chain1': 'A', 'chain2': 'B', 'len1': 121, 
     'len2': 107, 'class1': 'receptor', 'class2': 'ligand'
@@ -127,10 +127,9 @@ Use the cli to calculate the DockQ score.
 
 # TODOs
 - ~~add `DockQ` as an evaluation for heavy and light chain complex structure.~~
-- for multi-chain antibody, superimpose each chain seperately and calculate the RMSD. instead of superimposing the complex structure.
-- Read all residues in a pdb file including the missing residues. a boolean tensor indicate if a residue is valid 
+- ~~for multi-chain antibody, superimpose each chain seperately and calculate the RMSD. instead of superimposing the complex structure.~~
 # Credits
 
 - Part of the code is adapted from [shitong's Diffab](https://github.com/luost26/diffab).
-- Code regarding the calculation of DockQ is from https://github.com/bjornwallner/DockQ.
+- Code about the **DockQ** is from https://github.com/bjornwallner/DockQ.
 - Huge thanks to [@JinyuanSun](https://github.com/JinyuanSun) for contributing the cli tool.
