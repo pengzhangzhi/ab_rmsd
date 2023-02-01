@@ -90,7 +90,6 @@ def renumber(in_pdb):
             seq, reslist = biopython_chain_to_sequence(chain)
             numbers, abchain = assign_number_to_sequence(seq)
             chain_new = renumber_biopython_chain(chain.id, reslist, numbers)
-            print(f"[INFO] Renumbered chain {chain_new.id} ({abchain.chain_type})")
             if abchain.chain_type == "H":
                 heavy_chains.append(chain_new.id)
             elif abchain.chain_type in ("K", "L"):
