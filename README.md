@@ -9,6 +9,7 @@
 - [Usage](#usage)
 
 ## About <a name = "about"></a>
+[check here](https://mp.weixin.qq.com/s?__biz=MzU4MzcyODcwNw==&mid=2247484265&idx=1&sn=920dc5b679d524fe5be25ef73beca1f1&chksm=fda5e845cad26153b28ceda7d67fc9fdcf5b7083b8f8688117ca694caff6b77f4fee1c9a63b0&scene=126&sessionid=1673856911#rd) for a chinese tutorial. 
 
 Calculate the RMSD between two antibody structure (including nanobody and antibody).
 
